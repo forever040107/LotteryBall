@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState } from "react";
 import RoundBall from "./RoundBall";
 import { Wrapper, Block } from "./Styled";
 
@@ -11,15 +11,17 @@ function App() {
 
   const handleResult = (active, value) => {
     setActive(active);
+    const arr = [...lotteryResult];
     if (lotteryResult.indexOf(value) !== -1) {
       setLotteryResult(
         lotteryResult.filter((i) => i !== value).sort((a, b) => a - b)
       );
     } else {
-      lotteryResult.push(value);
+      arr.push(value);
       if (lotteryResult.length > 1) {
-        lotteryResult.sort((a, b) => a - b);
+        arr.sort((a, b) => a - b);
       }
+      setLotteryResult(arr);
     }
   };
 
